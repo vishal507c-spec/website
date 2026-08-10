@@ -12,11 +12,10 @@ import { ScrollEvents } from '../services/scroll.service.js';
 
 /** Hero elements that animate in on load, in order. */
 const REVEAL_SEQUENCE = [
-  '.hero-eyebrow',
   '.hero-title',
   '.hero-role',
-  '.hero-role-sub',
-  '.hero-subtitle',
+  '.hero-project',
+  '.hero-desc',
   '.hero-btns',
 ];
 
@@ -49,19 +48,6 @@ export class HeroComponent extends Component {
         if (index > 0) el.classList.add(`delay-${index}`);
       }
     });
-
-    const quiet = this.query('.hero-quiet-link');
-    if (quiet && !quiet.classList.contains('reveal')) {
-      quiet.classList.add('reveal', 'delay-5');
-    }
-    const visual = this.query('.hero-visual');
-    if (visual && !visual.classList.contains('reveal')) {
-      visual.classList.add('reveal', 'delay-4');
-    }
-    const proof = this.query('.hero-proof');
-    if (proof && !proof.classList.contains('reveal')) {
-      proof.classList.add('reveal', 'delay-5');
-    }
 
     this.services.reveal.watch();
   }

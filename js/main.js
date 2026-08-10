@@ -28,12 +28,9 @@ import { FooterComponent } from './components/footer.component.js';
 const COMPONENTS = {
   navbar: NavbarComponent,
   hero: HeroComponent,
-  'about-section': SectionViewComponent,
-  'skills-section': SectionViewComponent,
   'project-section': SectionViewComponent,
   'evidence-section': SectionViewComponent,
   'experience-section': SectionViewComponent,
-  'approach-section': SectionViewComponent,
   'contact-section': ContactSectionComponent,
   footer: FooterComponent,
 };

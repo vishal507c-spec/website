@@ -2,8 +2,7 @@ import { Component } from '../core/component.js';
 
 /**
  * SectionViewComponent — generic controller for pure-content sections
- * (About, Skills, Featured Project, Project Evidence, Experience,
- * How I Approach Site Work).
+ * (Featured Project, Core Skills, Project Evidence, Experience & Education).
  *
  * These sections have no interactive state of their own. The component
  * exists to give each section an explicit boundary and a single
@@ -17,29 +16,17 @@ import { Component } from '../core/component.js';
  * stagger. Keys map to the data-component names used in index.html.
  */
 const REVEAL_MAP = {
-  'about-section': {
-    targets: ['.section-head', '.about-intro', '.about-facts'],
-    stagger: [],
-  },
-  'skills-section': {
-    targets: ['.section-head', '.digital-tools'],
-    stagger: ['.capability-group'],
-  },
   'project-section': {
-    targets: ['.section-head', '.project-intro', '.created-row'],
-    stagger: ['.scope-list', '.workflow-step'],
+    targets: ['.section-head', '.project-cta'],
+    stagger: ['.project-fact'],
   },
   'evidence-section': {
-    targets: ['.section-head'],
+    targets: ['.section-head', '.docs-note'],
     stagger: ['.doc-card'],
   },
   'experience-section': {
     targets: ['.section-head'],
     stagger: ['.exp-block', '.edu-block'],
-  },
-  'approach-section': {
-    targets: ['.section-head'],
-    stagger: ['.approach-point'],
   },
 };
 

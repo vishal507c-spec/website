@@ -30,15 +30,20 @@ export class NavbarComponent extends Component {
     this._followScrollSpy();
   }
 
-  /* --- link clicks → request a scroll, then close the menu --- */
+  /* --- link clicks → close menu; anchors also request a scroll --- */
   _bindLinkClicks() {
     this._links.forEach((link) => {
       this.listen(link, 'click', (event) => {
         const href = link.getAttribute('href');
-        if (!href || !href.startsWith('#')) return;
-        event.preventDefault();
+        if (!href) return;
+        if (href.startsWith('#')) {
+          event.preventDefault();
+          this._setMenu(false);
+          this.emit(ScrollEvents.NAV_REQUEST, { targetId: href });
+          return;
+        }
+        // External/page links (e.g. resume.html): just close the menu.
         this._setMenu(false);
-        this.emit(ScrollEvents.NAV_REQUEST, { targetId: href });
       });
     });
   }

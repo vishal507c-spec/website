@@ -3,8 +3,7 @@ import { ScrollEvents } from '../services/scroll.service.js';
 
 /**
  * FooterComponent — responsible ONLY for the footer:
- *  - anchor links request navigation via the ScrollService
- *  - keeps its own copyright year current
+ * anchor links request navigation via the ScrollService.
  */
 export class FooterComponent extends Component {
   mount() {
@@ -16,8 +15,5 @@ export class FooterComponent extends Component {
         });
       });
     });
-
-    const yearEl = this.query('#year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
   }
 }
