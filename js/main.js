@@ -16,7 +16,6 @@ import { EventBus } from './core/event-bus.js';
 
 import { ScrollService } from './services/scroll.service.js';
 import { ScrollSpyService } from './services/scroll-spy.service.js';
-import { MailService } from './services/mail.service.js';
 import { RevealService } from './services/reveal.service.js';
 
 import { NavbarComponent } from './components/navbar.component.js';
@@ -31,8 +30,10 @@ const COMPONENTS = {
   hero: HeroComponent,
   'about-section': SectionViewComponent,
   'skills-section': SectionViewComponent,
-  'projects-section': SectionViewComponent,
-  'why-section': SectionViewComponent,
+  'project-section': SectionViewComponent,
+  'evidence-section': SectionViewComponent,
+  'experience-section': SectionViewComponent,
+  'approach-section': SectionViewComponent,
   'contact-section': ContactSectionComponent,
   footer: FooterComponent,
 };
@@ -44,7 +45,6 @@ function bootstrap() {
   const services = {
     scroll: new ScrollService(bus),
     spy: new ScrollSpyService(bus),
-    mail: new MailService(bus),
     reveal: new RevealService(),
   };
   Object.values(services).forEach((service) => service.mount());

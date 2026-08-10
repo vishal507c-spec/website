@@ -9,13 +9,15 @@ import { ScrollEvents } from '../services/scroll.service.js';
  * The hero knows nothing about the navbar, the spy, or any other
  * section; it only publishes intent on the event bus.
  */
+
 /** Hero elements that animate in on load, in order. */
 const REVEAL_SEQUENCE = [
   '.hero-eyebrow',
   '.hero-title',
+  '.hero-role',
   '.hero-subtitle',
   '.hero-btns',
-  '.hero-chips',
+  '.hero-quiet-link',
 ];
 
 export class HeroComponent extends Component {
@@ -24,7 +26,8 @@ export class HeroComponent extends Component {
     this._optIntoReveal();
   }
 
-  /* CTA buttons publish a navigation request — never scroll directly. */
+  /* Internal anchor CTAs publish a navigation request. External
+     links (resume.html, WhatsApp) keep their default behaviour. */
   _bindCtaButtons() {
     this.queryAll('a[href^="#"]').forEach((link) => {
       this.listen(link, 'click', (event) => {
@@ -46,10 +49,16 @@ export class HeroComponent extends Component {
         if (index > 0) el.classList.add(`delay-${index}`);
       }
     });
+
     const visual = this.query('.hero-visual');
     if (visual && !visual.classList.contains('reveal')) {
-      visual.classList.add('reveal', 'delay-3');
+      visual.classList.add('reveal', 'delay-4');
     }
+    const proof = this.query('.hero-proof');
+    if (proof && !proof.classList.contains('reveal')) {
+      proof.classList.add('reveal', 'delay-5');
+    }
+
     this.services.reveal.watch();
   }
 }

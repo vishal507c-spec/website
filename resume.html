@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vishal Singh | Resume — Project &amp; Site Engineer</title>
+  <meta name="description" content="Resume of Vishal Singh — Project &amp; Site Engineer, Diploma in Mechanical Engineering. Project planning, scheduling, WBS, DPR, material management." />
+  <meta name="author" content="Vishal Singh" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ---------- Resume page layout (uses shared design tokens) ---------- */
+    body { background: var(--bg-soft); }
+
+    .resume-toolbar {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .resume-toolbar .btn { font-size: 13.5px; padding: 10px 20px; }
+
+    .resume {
+      max-width: 860px;
+      margin: 24px auto 64px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(32px, 5vw, 56px);
+    }
+
+    .resume-header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .resume-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .resume-role {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .resume-contact {
+      text-align: right;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .resume-contact a { color: var(--muted); }
+    .resume-contact a:hover { color: var(--accent); }
+
+    .resume-section { margin-bottom: 26px; }
+    .resume-section:last-child { margin-bottom: 0; }
+    .resume-section-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .resume-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .resume-skills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 24px;
+      padding: 0;
+    }
+    .resume-skills li {
+      font-size: 13.5px;
+      color: var(--ink);
+      padding-left: 18px;
+      position: relative;
+    }
+    .resume-skills li::before {
+      content: '';
+      position: absolute;
+      left: 1px;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      transform: rotate(45deg);
+    }
+
+    .resume-item {
+      border-left: 2px solid var(--accent-soft);
+      padding-left: 18px;
+      margin-bottom: 18px;
+    }
+    .resume-item:last-child { margin-bottom: 0; }
+    .resume-item-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .resume-item-org {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .resume-item-period {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+    .resume-item ul {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0;
+    }
+    .resume-item ul li {
+      font-size: 13.5px;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+    }
+    .resume-item ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+    }
+    .resume-link {
+      color: var(--accent);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .resume-link:hover { border-bottom-color: var(--accent); }
+
+    .resume-footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    /* ---------- Print (Ctrl+P → Save as PDF) ---------- */
+    @media print {
+      body { background: #fff; }
+      .resume-toolbar { display: none; }
+      .resume {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+      }
+      .resume-footer { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 560px) {
+      .resume-contact { text-align: left; }
+      .resume-skills { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume-toolbar">
+    <a class="btn btn-outline" href="index.html">&larr; Back to Portfolio</a>
+    <button class="btn btn-primary" id="printBtn">Download / Print Resume</button>
+  </div>
+
+  <main class="resume">
+    <header class="resume-header">
+      <div>
+        <h1 class="resume-name">Vishal Singh</h1>
+        <p class="resume-role">Project &amp; Site Engineer | Mechanical Engineering</p>
+      </div>
+      <div class="resume-contact">
+        Gorakhpur, Uttar Pradesh<br />
+        <a href="mailto:vishal507c@gmail.com">vishal507c@gmail.com</a> ·
+        <a href="tel:+917839525316">7839525316</a><br />
+        <a href="https://wa.me/917839525316" target="_blank" rel="noopener">WhatsApp</a> ·
+        <a href="https://linkedin.com/in/vishal-singh-64452b243" target="_blank" rel="noopener">linkedin.com/in/vishal-singh-64452b243</a>
+      </div>
+    </header>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Summary</h2>
+      <p class="resume-text">
+        Diploma in Mechanical Engineering candidate focused on Project &amp; Site
+        Engineering — project planning, scheduling, work breakdown structures,
+        daily progress reporting, material management and technical documentation.
+        Hands-on operational background in inventory, materials and practical
+        problem-solving.
+      </p>
+    </section>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Core Competencies</h2>
+      <ul class="resume-skills">
+        <li>Project Planning</li>
+        <li>Project Scheduling</li>
+        <li>Engineering Drawing Reading</li>
+        <li>Work Breakdown Structure (WBS)</li>
+        <li>Daily Progress Reporting (DPR)</li>
+        <li>Inventory Management</li>
+        <li>Material Handling</li>
+        <li>Electrical Fault Diagnosis</li>
+        <li>Microsoft Excel</li>
+        <li>Microsoft Word</li>
+        <li>Microsoft PowerPoint</li>
+        <li>Python</li>
+        <li>Notion</li>
+      </ul>
+    </section>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Training Project</h2>
+      <div class="resume-item">
+        <p class="resume-item-title">Industrial Compressed Air System Installation</p>
+        <p class="resume-item-org">Self-Learning Training Project — mechanical equipment installation &amp; utility piping execution planning</p>
+        <p class="resume-item-period">Project planning · BOQ · Schedule · Material tracking · DPR</p>
+        <ul>
+          <li>Planned the full execution workflow from project charter to commissioning.</li>
+          <li>Prepared BOQ, project schedule, material tracking and progress reports as working documents.</li>
+          <li><a class="resume-link" href="index.html#project">View the project &amp; evidence in my portfolio</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Experience</h2>
+      <div class="resume-item">
+        <p class="resume-item-title">Electrical Shop Assistant</p>
+        <p class="resume-item-org">Vishal Electric &amp; Electronics</p>
+        <p class="resume-item-period">July 2022 – August 2023</p>
+        <ul>
+          <li>Maintained daily inventory records</li>
+          <li>Prepared required-item lists for stock ordering</li>
+          <li>Organised shop and tool arrangement</li>
+          <li>Performed basic electrical fault finding</li>
+          <li>Assisted customers in product selection</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Education</h2>
+      <div class="resume-item">
+        <p class="resume-item-title">Diploma in Mechanical Engineering</p>
+        <p class="resume-item-org">Saroj Institute of Management &amp; Technology, Lucknow</p>
+        <p class="resume-item-period">2023 – 2026 · 69.23% | First Division</p>
+      </div>
+      <div class="resume-item">
+        <p class="resume-item-title">Intermediate — UP Board</p>
+        <p class="resume-item-period">Passed</p>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2 class="resume-section-title">Languages</h2>
+      <p class="resume-text">Hindi · English</p>
+    </section>
+
+    <p class="resume-footer">VISHAL SINGH — PROJECT &amp; SITE ENGINEER · GORAKHPUR, UTTAR PRADESH</p>
+  </main>
+
+  <script>
+    document.getElementById('printBtn').addEventListener('click', function () {
+      window.print();
+    });
+  </script>
+</body>
+</html>
