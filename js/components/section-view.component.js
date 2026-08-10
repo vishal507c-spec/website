@@ -22,11 +22,11 @@ const REVEAL_MAP = {
     stagger: [],
   },
   'skills-section': {
-    targets: ['.section-head'],
+    targets: ['.section-head', '.digital-tools'],
     stagger: ['.capability-group'],
   },
   'project-section': {
-    targets: ['.section-head', '.project-intro'],
+    targets: ['.section-head', '.project-intro', '.created-row'],
     stagger: ['.scope-list', '.workflow-step'],
   },
   'evidence-section': {

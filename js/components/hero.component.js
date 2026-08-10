@@ -15,9 +15,9 @@ const REVEAL_SEQUENCE = [
   '.hero-eyebrow',
   '.hero-title',
   '.hero-role',
+  '.hero-role-sub',
   '.hero-subtitle',
   '.hero-btns',
-  '.hero-quiet-link',
 ];
 
 export class HeroComponent extends Component {
@@ -50,6 +50,10 @@ export class HeroComponent extends Component {
       }
     });
 
+    const quiet = this.query('.hero-quiet-link');
+    if (quiet && !quiet.classList.contains('reveal')) {
+      quiet.classList.add('reveal', 'delay-5');
+    }
     const visual = this.query('.hero-visual');
     if (visual && !visual.classList.contains('reveal')) {
       visual.classList.add('reveal', 'delay-4');
