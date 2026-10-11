@@ -62,6 +62,19 @@
         <a href="#project" class="btn btn-primary">View Project</a>
         <a href="resume.html" class="btn btn-outline">Resume</a>
       </div>
+
+      <dl class="hero-stats">
+        <div><dt>69.23%</dt><dd>Diploma · First Division</dd></div>
+        <div><dt>12</dt><dd>Core skills</dd></div>
+        <div><dt>1 yr</dt><dd>Site &amp; shop experience</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero-portrait" aria-hidden="true">
+      <div class="portrait-tilt" id="portraitTilt">
+        <img class="portrait-img" src="assets/images/portrait-nobg.png" alt="" />
+        <span class="portrait-shadow"></span>
+      </div>
     </div>
   </header>
 
@@ -265,5 +278,32 @@
   </footer>
 
   <script type="module" src="js/main.js"></script>
+  <script>
+    (function () {
+      var cards = document.querySelectorAll('.project-fact, .doc-card, .exp-block, .edu-block, .contact-list');
+      cards.forEach(function (c) { c.classList.add('spot'); });
+      cards.forEach(function (c) {
+        c.addEventListener('pointermove', function (e) {
+          var r = c.getBoundingClientRect();
+          c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      });
+
+      var tilt = document.getElementById('portraitTilt');
+      if (!tilt || window.matchMedia('(pointer: coarse)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var hero = document.getElementById('home');
+      hero.addEventListener('mousemove', function (e) {
+        var r = tilt.getBoundingClientRect();
+        var x = (e.clientX - (r.left + r.width / 2)) / r.width;
+        var y = (e.clientY - (r.top + r.height / 2)) / r.height;
+        tilt.style.transform = 'rotateY(' + (x * 14) + 'deg) rotateX(' + (-y * 14) + 'deg)';
+      });
+      hero.addEventListener('mouseleave', function () {
+        tilt.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    })();
+  </script>
 </body>
 </html>

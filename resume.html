@@ -12,7 +12,14 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ---------- Resume page layout (uses shared design tokens) ---------- */
-    body { background: var(--bg-soft); }
+    body {
+      background:
+        radial-gradient(60% 40% at 80% -5%, rgba(27, 76, 140, 0.10), transparent 70%),
+        radial-gradient(50% 40% at 0% 100%, rgba(120, 160, 255, 0.10), transparent 70%),
+        var(--bg-soft);
+      min-height: 100vh;
+    }
+    @keyframes sheen { to { background-position: 200% center; } }
 
     .resume-toolbar {
       max-width: 860px;
@@ -30,15 +37,17 @@
       max-width: 860px;
       margin: 24px auto 64px;
       background: #fff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      padding: clamp(32px, 5vw, 56px);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-card);
+      padding: clamp(36px, 5vw, 60px);
+      position: relative;
+      overflow: hidden;
     }
 
     .resume-header {
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
       margin-bottom: 28px;
       display: flex;
       justify-content: space-between;
@@ -46,9 +55,16 @@
       flex-wrap: wrap;
     }
     .resume-name {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      background: linear-gradient(110deg, var(--ink) 35%, #1b4c8c 50%, var(--ink) 65%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: sheen 7s linear infinite;
       line-height: 1.15;
     }
     .resume-role {
@@ -69,13 +85,24 @@
     .resume-section { margin-bottom: 26px; }
     .resume-section:last-child { margin-bottom: 0; }
     .resume-section-title {
-      font-family: var(--mono);
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 12px;
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+    .resume-section-title::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(27, 76, 140, 0.15);
     }
     .resume-text {
       font-size: 14px;
@@ -98,18 +125,18 @@
     .resume-skills li::before {
       content: '';
       position: absolute;
-      left: 1px;
-      top: 8px;
+      left: 2px;
+      top: 9px;
       width: 6px;
       height: 6px;
-      background: var(--accent-soft);
-      border: 1px solid var(--accent);
-      transform: rotate(45deg);
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.6;
     }
 
     .resume-item {
-      border-left: 2px solid var(--accent-soft);
-      padding-left: 18px;
+      border-left: 2px solid var(--line);
+      padding-left: 20px;
       margin-bottom: 18px;
     }
     .resume-item:last-child { margin-bottom: 0; }
@@ -124,10 +151,8 @@
       margin-top: 2px;
     }
     .resume-item-period {
-      font-family: var(--mono);
-      font-size: 11.5px;
+      font-size: 13px;
       color: var(--faint);
-      letter-spacing: 0.06em;
       margin-top: 4px;
     }
     .resume-item ul {
@@ -153,18 +178,16 @@
     .resume-link {
       color: var(--accent);
       border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
+      transition: color 0.3s ease;
     }
-    .resume-link:hover { border-bottom-color: var(--accent); }
+    .resume-link:hover { color: var(--accent-dark); }
 
     .resume-footer {
       margin-top: 28px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 11px;
+      font-size: 12px;
       color: var(--faint);
-      letter-spacing: 0.06em;
       text-align: center;
     }
 
@@ -199,72 +222,76 @@
     <header class="resume-header">
       <div>
         <h1 class="resume-name">Vishal Singh</h1>
-        <p class="resume-role">Project &amp; Site Engineer | Mechanical Engineering</p>
+        <p class="resume-role">Mechanical Engineering Diploma | Site &amp; Project Engineering</p>
       </div>
       <div class="resume-contact">
         Gorakhpur, Uttar Pradesh<br />
         <a href="mailto:vishal507c@gmail.com">vishal507c@gmail.com</a> ·
         <a href="tel:+917839525316">7839525316</a><br />
-        <a href="https://wa.me/917839525316" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://vishal507c-spec.github.io/website" target="_blank" rel="noopener">Project Portfolio</a>
       </div>
     </header>
 
     <section class="resume-section">
-      <h2 class="resume-section-title">Summary</h2>
+      <h2 class="resume-section-title">Professional Summary</h2>
       <p class="resume-text">
-        Diploma in Mechanical Engineering candidate focused on Project &amp; Site
-        Engineering — project planning, scheduling, work breakdown structures,
-        daily progress reporting, material management and technical documentation.
-        Hands-on operational background in inventory, materials and practical
-        problem-solving.
+        I have a Diploma in Mechanical Engineering. I worked for one year in an electrical
+        shop, where I handled stock, kept records, and helped with daily work. I also did a
+        training project on Industrial Compressed Air System Installation. In this project, I
+        made a BOQ, tracked material, wrote daily progress reports, and made a project schedule
+        in MS Project. I am looking for an entry-level job as a Mechanical Site Engineer,
+        Junior Project Engineer, or Project Engineer Trainee.
       </p>
     </section>
 
     <section class="resume-section">
-      <h2 class="resume-section-title">Core Competencies</h2>
+      <h2 class="resume-section-title">Core Skills</h2>
       <ul class="resume-skills">
-        <li>Project Planning</li>
-        <li>Project Scheduling</li>
         <li>Engineering Drawing Reading</li>
-        <li>Work Breakdown Structure (WBS)</li>
+        <li>BOQ Preparation</li>
+        <li>Quantity Take-Off</li>
+        <li>Material Management</li>
+        <li>Project Planning &amp; Scheduling</li>
         <li>Daily Progress Reporting (DPR)</li>
-        <li>Inventory Management</li>
-        <li>Material Handling</li>
-        <li>Electrical Fault Diagnosis</li>
-        <li>Microsoft Excel</li>
-        <li>Microsoft Word</li>
-        <li>Microsoft PowerPoint</li>
-        <li>Python</li>
-        <li>Notion</li>
+        <li>Site Execution &amp; Coordination</li>
+        <li>Material Tracking</li>
+        <li>Installation Planning</li>
+        <li>MS Excel</li>
+        <li>MS Project</li>
+        <li>Python (Automation)</li>
       </ul>
     </section>
 
     <section class="resume-section">
-      <h2 class="resume-section-title">Training Project</h2>
+      <h2 class="resume-section-title">Project Experience / Training Project</h2>
       <div class="resume-item">
         <p class="resume-item-title">Industrial Compressed Air System Installation</p>
-        <p class="resume-item-org">Self-Learning Training Project — mechanical equipment installation &amp; utility piping execution planning</p>
-        <p class="resume-item-period">Project planning · BOQ · Schedule · Material tracking · DPR</p>
+        <p class="resume-item-org">Self-Learning Training Project</p>
+        <p class="resume-item-period">August 2026</p>
         <ul>
-          <li>Planned the full execution workflow from project charter to commissioning.</li>
-          <li>Prepared BOQ, project schedule, material tracking and progress reports as working documents.</li>
+          <li>Made a Project Charter for the compressed air system, with the project scope, objective, and main equipment.</li>
+          <li>Made a BOQ for the air compressor, receiver tank, air dryer, air filter, pipes, valves, gauges, and pipe supports.</li>
+          <li>Made a Material Tracking sheet to check required, ordered, received, used, and balance quantity for each item.</li>
+          <li>Wrote Daily Progress Reports (DPR) to compare planned and actual work for pipe and valve installation.</li>
+          <li>Made a project schedule in MS Project, from site preparation to testing and commissioning.</li>
+          <li>Wrote down the installation steps, like placing the compressor and receiver tank, piping, pressure testing, and commissioning.</li>
           <li><a class="resume-link" href="index.html#project">View the project &amp; evidence in my portfolio</a></li>
         </ul>
       </div>
     </section>
 
     <section class="resume-section">
-      <h2 class="resume-section-title">Experience</h2>
+      <h2 class="resume-section-title">Professional Experience</h2>
       <div class="resume-item">
         <p class="resume-item-title">Electrical Shop Assistant</p>
         <p class="resume-item-org">Vishal Electric &amp; Electronics</p>
         <p class="resume-item-period">July 2022 – August 2023</p>
         <ul>
-          <li>Maintained daily inventory records</li>
-          <li>Prepared required-item lists for stock ordering</li>
-          <li>Organised shop and tool arrangement</li>
-          <li>Performed basic electrical fault finding</li>
-          <li>Assisted customers in product selection</li>
+          <li>Kept a daily record of shop items so important products did not run out.</li>
+          <li>Made a list of required items to help order new stock on time.</li>
+          <li>Kept electrical tools and products in the shop organized.</li>
+          <li>Helped find and fix small electrical problems.</li>
+          <li>Helped customers pick the right electrical products for their needs.</li>
         </ul>
       </div>
     </section>
@@ -272,19 +299,19 @@
     <section class="resume-section">
       <h2 class="resume-section-title">Education</h2>
       <div class="resume-item">
-        <p class="resume-item-title">Diploma in Mechanical Engineering</p>
+        <p class="resume-item-title">Diploma in Mechanical Engineering (2023 – 2026)</p>
         <p class="resume-item-org">Saroj Institute of Management &amp; Technology, Lucknow</p>
-        <p class="resume-item-period">2023 – 2026 · 69.23% | First Division</p>
+        <p class="resume-item-period">69.23% | First Division</p>
       </div>
       <div class="resume-item">
-        <p class="resume-item-title">Intermediate — UP Board</p>
+        <p class="resume-item-title">Intermediate (UP Board)</p>
         <p class="resume-item-period">Passed</p>
       </div>
     </section>
 
     <section class="resume-section">
       <h2 class="resume-section-title">Languages</h2>
-      <p class="resume-text">Hindi · English</p>
+      <p class="resume-text">Hindi, English</p>
     </section>
 
     <p class="resume-footer">VISHAL SINGH — PROJECT &amp; SITE ENGINEER · GORAKHPUR, UTTAR PRADESH</p>
